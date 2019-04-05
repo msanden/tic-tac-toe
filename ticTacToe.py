@@ -21,6 +21,20 @@ class Board():
     def to_win(self, player):
         if self.cells[1]==player and self.cells[2]==player and self.cells[3]==player:
             return True
+        if self.cells[4]==player and self.cells[5]==player and self.cells[6]==player:
+            return True
+        if self.cells[7]==player and self.cells[8]==player and self.cells[9]==player:
+            return True
+        if self.cells[1]==player and self.cells[4]==player and self.cells[7]==player:
+            return True
+        if self.cells[2]==player and self.cells[5]==player and self.cells[8]==player:
+            return True
+        if self.cells[3]==player and self.cells[6]==player and self.cells[9]==player:
+            return True
+        if self.cells[1]==player and self.cells[5]==player and self.cells[9]==player:
+            return True
+        if self.cells[3]==player and self.cells[5]==player and self.cells[7]==player:
+            return True
 
     def reset(self):
         self.cells = [" "," "," "," "," "," "," "," "," "," "]
@@ -40,7 +54,6 @@ while True:
     #get player X's input
     x_input = int(input("\n (Player X) Choose a box between 1-9. > "))
     board.update_box(x_input, "x")
-
     refresh_screen()
 
     if board.to_win("x"):
@@ -53,5 +66,15 @@ while True:
             break
 
     #get player o's input
-    o_input = int(input("\n Player O) Choose a box between 1-9. > "))
+    o_input = int(input("\n (Player O) Choose a box between 1-9. > "))
     board.update_box(o_input, "o")
+    refresh_screen()
+
+    if board.to_win("o"):
+        print("\n O wins! \n")
+        new_game = input("Would you like to play again? (Y/N) >").upper()
+        if new_game == "Y":
+            board.reset()
+            continue
+        else:
+            break
